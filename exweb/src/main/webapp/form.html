@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+웹브라우저에서 요청을 보내는 방법 <br>
+1. 웹브라우저 주소창에 요청주소를 직접 입력 <br>
+2. 링크 엘리먼트를 클릭하여 요청 전송 <br>
+<a href="http://localhost:8000/exweb/hello.do">Hello 서블릿 실행</a> <br>
+현재 문서의 주소와 요청을 보내는 서버 주소(IP주소, 포트번호)가 동일하면 생략 가능 <br>
+<a href="/exweb/hello.do">Hello 서블릿 실행</a> <br> 
+<!-- 위처럼 현재 주소와 똑같은 부분은 생략 가능. 웹 브라우저는/를 현재 컴퓨터의 최상위 경로라고 생각함. 
+절대경로. /가 있으면 절대경로, /가 없으면 상대경로(이경우 현재 폴더를 기준으로 함.)-->
+현재 문서와 폴더 경로가 동일하면 생략 가능 <br>
+<a href="hello.do">Hello 서블릿 실행</a> <!-- 현재 문서로부터 어떤 경로에 있는 애를 요청하는 거다. 기준을 현재 폴더로 삼는다. 
+현재 폴더 :localhost:8000/exweb/ 
+상대경로: 현재 폴더를 기준. 같은 폴더에 있음.-->
+3. 폼 엘리먼트를 제출(전송)하여 요청 전송 <br>
+type="submit"인 input 엘리먼트를 클릭하면
+폼 내부의 입력엘리먼트 값들을 파라미터로 포함하여,
+form 엘리먼트의 action 속성값으로 지정한 주소로 이동(요청전송)
+<form action="/exweb/login.do">
+	아이디 : <input type="text" name="id" >
+	비밀번호 : <input type="text" name="pw" >
+	<input type="submit">
+</form>
+<!-- name안에 파라미터 설정 값이 들어간다. 파라미터 이름을 name에 써준다! LoginServelt에서 설정한 파라미터 값을 넣어줌. 
+이때 파라미터는 문자열이므로 "" 안에 값을 써줘야 함. -->
+
+요청방식(=HTTP Method=HTTP Command) : GET, POST, PUT, DELETE,.....
+- GET : 파라미터를 주소에 붙여서 전송
+	주소창에 주소를 직접 입력, 링크(a)를 클릭한 경우, method 지정을 생략한 form을 submit한 경우
+- POST : 파라미터를 요청메시지의 바디(내용)에 담아서 전송
+	method="post"로 지정한 form을 submit한 경우
+<form action="/exweb/login.do" method="get">
+	아이디 : <input type="text" name="id" >
+	비밀번호 : <input type="text" name="pw" >
+	<input type="submit">
+</form>
+<form action="/exweb/login.do" method="post">
+	아이디 : <input type="text" name="id" >
+	비밀번호 : <input type="text" name="pw" >
+	<input type="submit">
+</form>
+
+
+<!-- 
+GET http://google.com/index.html - 이파일을 달라는 요청
+POST - 파일을 함께 보내니 이걸 이 위치(주소)에 저장해달라.
+PUT - 파일을 교체해달라.
+DELETE - 파일을 삭제해주라. 
+ -->
+
+4. 자바스크립트 명령어를 사용하여 요청 전송
+
+<hr />
+<!-- <a href="/exweb/temp/link.html"> 링크테스트 문서로 이동</a> -->
+<a href="temp/link.html"> 링크테스트 문서로 이동</a> <br>
+<!-- 경로 지정시 .은 현재디렉토리, ..은 부모디렉토리를 의미. .하나를 생략해도 디폴트로 현재디렉토리임. -->
+<a href="./temp/link.html"> 링크테스트 문서로 이동</a>
+<a href="./temp/../temp/link.html"> 링크테스트 문서로 이동</a>
+
+<hr>
+<!-- 사용자이름을 입력하고 submit 버튼을 클릭하면, -->
+<!-- WelcomeServlet이 실행되어 화면에 출력되도록 form을 작성 -->
+
+GET방식
+<form action="welcome.do" method="get"> <!-- 절대경로 : /exweb/welcome.do -->
+	사용자이름: <input type="text" name="user"/>
+	<input type="submit" />
+</form>
+
+POST방식
+<form action="welcome.do" method="post">
+	사용자이름: <input type="text" name="user"/>
+	<input type="submit" />
+</form>
+<!-- post방식에서는 영어는 정상적으로 나오지만 한글은 깨져서 나온다. --인코딩설정 방법: WelcoServlet으로 갈 것. -->
+
+<br>
+<!-- 정수 2개와 연산자를 선택하고 submit 버튼을 클릭하면, -->
+<!-- AddServlet이 실행되고 화면에 연산결과가 출력되도록 -->
+<!-- form을 추가하고, AddServlet을 변경 -->
+<!-- 연산자는 더하기와 곱하기 중에 하나를 선택하고,  -->
+<!-- 더하기를 선택하면 op=p, 곱하기를 선택하면 op=m이라고 파라미터를 전송 -->
+
+
+<form action="./add.do" method="get">
+	정수1 : <input type="text" name="x" />
+	정수2 : <input type="text" name="y" />
+	연산자 : <select name="op">
+				<option value="p">더하기</option>
+				<option value="m">곱하기</option>
+			</select>
+	<input type="submit" />
+</form>			
+
+
+
+<hr>
+<!-- 곰, 독수리, 개 중 하나를 선택하고 submit 버튼을 클릭하면
+PhotoServlet이 실행되어 화면에 선택한 동물의 사진이 출력되도록
+form을 구현 -->
+<form action="photo.do" method="post">
+	<select name= "img">
+		<option value="bear">곰</option>
+		<option value="eagle">독수리</option>
+		<option value="dog">강아지</option>
+	</select>
+	<input type="submit" />
+</form>	
+
+<form action="photo.do" method="post">
+	<input type="radio" name="img" value="bear" /> 곰
+	<input type="radio" name="img" value="eagle" /> 독수리
+	<input type="radio" name="img" value="dog" /> 강아지
+	<input type="submit" />
+</form>
+
+
+
+<hr>
+<!-- 주문자 이름을 입력하고, 
+피자. 햄버거, 돈까스, 딸기쥬스, 키위쥬스 중
+주문하고 싶은 음식을 모두 선택하고 
+submit 버튼을 클릭하면, 
+화면에 선택한 음식들이 다음과 같이 목록(ul)형태로 출력되도록 구현
+  * 피자
+  * 돈까스
+  * 딸기쥬스
+  OOO님은 총 3개의 음식을 주문했습니다.
+
+주문자이름은 user= 이름으로
+피자를 선택하면 ord=p001, 햄버거를 선택하면 ord=p002,
+돈까스를 선택하면 ord=p003, 
+딸기쥬스를 선택하면 ord=p101, 키위쥬스를 선택하면 ord=p102
+파라미터를 POST 방식으로 전송 
+
+요청주소는 /order.do
+서블릿 클래스 이름은 OrderServlet 으로 작성 -->
+
+<form action="order.do" method="post">
+	주문자이름 : <input type="text" name="user" /> <br>
+	<label><input type="checkbox" name="ord" value="p001"/> 피자 </label>
+	<label><input type="checkbox" name="ord" value="p002"/> 햄버거 </label>
+	<label><input type="checkbox" name="ord" value="p003"/> 돈까스</label>
+	<label><input type="checkbox" name="ord" value="p101"/> 딸기쥬스</label>
+	<label><input type="checkbox" name="ord" value="p102"/> 키위쥬스</label>
+	<input type="submit" />
+</form>
+
+
+
+
+
+<!-- 
+	<label for="add"> + : </label>
+	<input type="radio" name="op" value="p" id="add" />
+	
+	<label for="multiple"> x : </label>
+	<input type="radio" name="op" value="p" id="multiple" />
+ -->
+
+	<!-- <input type="radio" name="op" value="p" value="m" id="add" /> -->
+	
+	<!-- <input type="text" name="y" id="num2" />
+	
+	<input type="radio" name="op" value="p" id="add" />
+	
+	<input type="radio" name="op" value="m" id="multiple" /> -->
+	
+	
+
+
+
+
+
+
+<!-- <form action="../add.do" method="get">
+	<label for="num1"> 정수1 : </label>
+	<input type="text" name="x" id="num1" />
+	
+	<label for="num2"> 정수2 : </label>
+	<input type="text" name="y" id="num2" />
+	
+	<label for="add"> + : </label>
+	<input type="radio" name="op" value="+" id="add" />
+	
+	<label for="multiple"> x : </label>
+	<input type="radio" name="op" value="x" id="multiple" />
+	
+	<input type="submit" />
+</form> -->
+
+	
+</body>
+</html>
