@@ -12,10 +12,10 @@
 
 <form action='${pageContext.request.contextPath}/student/mod.do' method='post'>
 
-학번 : <input type='text' name='stu_no' value="${vo.stu_no}" readonly/><br>
-이름 : <input type='text' name='stu_name'/><br>
-점수 : <input type='text' name='stu_score'/><br>
-
+학번 : <input type='text' name='stu_no' value="${vo.stu_no}" /><br>
+이름 : <input type='text' name='stu_name' value="${vo.stu_name}" /><br>
+점수 : <input type='text' name='stu_score' value="${vo.stu_score}" /><br>
+<input type='hidden' name='up_stu_no' value="${vo.stu_no}" />
 <input type='submit' />
 </form>
 

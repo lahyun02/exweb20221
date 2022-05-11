@@ -30,21 +30,7 @@ public class StuAddServlet extends HttpServlet {
 		// 서버 주소가 다를 수 있으니까 주소 앞에 http://localhost:8000는 생략 
 		resp.sendRedirect( req.getContextPath() + "/student/list.do");
 		
-		//결과 출력 
-//		resp.setCharacterEncoding("UTF-8");
-//		resp.setContentType("text/html");
-//		PrintWriter out = resp.getWriter();
-//		out.println("<!DOCTYPE html>");
-//		out.println("<html>");
-//		out.println("<head>");
-//		out.println("<meta charset='UTF-8'>");
-//		out.println("<title>Insert title here</title>");
-//		out.println("</head>");
-//		out.println("<body>");
-//		out.println("<h1>회원추가</h1>");
-//		out.println( num + "명의 회원이 추가되었습니다.");
-//		out.println("</body>");
-//		out.println("</html>");
+
 		
 	}
 }

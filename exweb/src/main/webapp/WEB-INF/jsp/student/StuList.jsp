@@ -9,23 +9,42 @@
 <title>Insert title here</title>
 <style>
 a {text-decoration : none}
+table {
+	width: 70%;
+	border: 1px solid #333;
+	border-collapse: collapse;
+	text-align: center;
+}
+th, tr, td {
+	border: 1px solid #333;
+	padding: 10px;
+	
+}
 </style>
 </head>
 <body>
 <h1>학생목록</h1>
 <button><a href='<c:url value="/student/addform.do" />'>학생추가</a></button><br>
-학번 : 이름 : 점수<br>
 
-<c:forEach var="vo" items="${stuList}">
-	<a href="<c:url value='/student/detail.do'/>?stu_no=${vo.stu_no}"> ${vo.stu_no}</a> : 
-	<a href="<c:url value='/student/detail.do'/>?stu_no=${vo.stu_no}">${vo.stu_name}</a> : 
-	<a href="<c:url value='/student/detail.do'/>?stu_no=${vo.stu_no}">${vo.stu_score}</a> <br>
-</c:forEach>
+<table>
+	<thead>
+		<tr>
+			<th> 학번</th>
+			<th> 이름</th>
+			<th> 점수</th>
+		</tr>
+	</thead>
+	<tbody>
+		<c:forEach var="vo" items="${stuList}">
+			<tr>
+				<td><a href="<c:url value='/student/detail.do'/>?stu_no=${vo.stu_no}"> ${vo.stu_no}</a></td>
+				<td><a href="<c:url value='/student/detail.do'/>?stu_no=${vo.stu_no}">${vo.stu_name}</a></td>
+				<td><a href="<c:url value='/student/detail.do'/>?stu_no=${vo.stu_no}">${vo.stu_score}</a></td>
+			</tr>
+		</c:forEach>
+	</tbody>
 
-		<!-- for(int i=0; i < list.size(); i++) {
-			StudentVo vo = list.get(i);
-			out.println("<a href='" + req.getContextPath() + "/student/detail.do?stu_no=" + vo.getStu_no()+ "'>" + vo.toString() + "</a><br>");
-		} -->
-		
+
+</table>		
 </body>
 </html>

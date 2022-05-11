@@ -11,11 +11,39 @@
 a {text-decoration : none}
 #wrap { display: flex; }
 form { margin-right: 10px; }
+table {
+	width: 70%;
+	border: 1px solid #333;
+	border-collapse: collapse;
+	text-align: center;
+}
+tr, th, td {
+	border: 1px solid #333;
+	padding: 10px;
+	
+}
 </style>
 </head>
 <body> 
-상세페이지<br>
-${vo.stu_no} :${vo.stu_name}:${vo.stu_score}
+<h2>상세페이지</h2>
+<table>
+	<thead>
+		<tr>
+			<th> 학번</th>
+			<th> 이름</th>
+			<th> 점수</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>${vo.stu_no}</td>
+			<td>${vo.stu_name}</td>
+			<td>${vo.stu_score}</td>
+		</tr>
+	
+	</tbody>
+</table>
+
 
 
 <div id="wrap">

@@ -85,7 +85,7 @@ public class StudentDao {
 	}
 	
 	
-	public int modifyNo(String stu_no, String stu_name, String stu_score) {
+	public int modifyNo(String stu_no, String stu_name, String stu_score, String up_stu_no) {
 		// 입력한 아이디의 회원의 이름을 student 테이블에서 수정
 		int num = 0;
 		String modSql = "UPDATE student SET stu_no = ?, stu_name = ?, stu_score= ? WHERE stu_no = ?"; 
@@ -96,7 +96,7 @@ public class StudentDao {
 			pstmt.setString(1, stu_no);  
 			pstmt.setString(2, stu_name);  
 			pstmt.setString(3, stu_score);  
-			pstmt.setString(4, stu_no);  
+			pstmt.setString(4, up_stu_no);  
 			num = pstmt.executeUpdate(); 
 		} catch (SQLException e) {
 			e.printStackTrace();
