@@ -8,6 +8,13 @@ public class StudentVo {
 	private String stu_name;
 	private int stu_score;
 	
+	public StudentVo() {}
+	
+	public StudentVo(int stu_no, String stu_name, int stu_score) {
+		this.stu_no = stu_no;
+		this.stu_name = stu_name;
+		this.stu_score = stu_score;
+	}
 	
 	public int getStu_no() {
 		return stu_no;

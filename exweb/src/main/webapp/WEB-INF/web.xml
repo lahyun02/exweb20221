@@ -40,7 +40,45 @@
   	<url-pattern>/life.do</url-pattern> 
   </servlet-mapping>
   
-
+  
+  <filter>
+  	<filter-name>encFilter</filter-name>
+  	<filter-class>com.exam.comm.MyFilter</filter-class>
+  	<init-param>
+  		<param-name>enc</param-name>
+  		<param-value>UTF-8</param-value>
+  	</init-param>
+  </filter>
+  <filter-mapping>
+	  <filter-name>encFilter</filter-name>
+	  <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  <listener>
+	  <listener-class>com.exam.comm.MyListener</listener-class>
+  </listener>
+  
+  <!-- 웹 애플리케이션 전체에서 공유하여 사용가능한 데이터를 이름-값 형식으로 설정 -->
+  <context-param>
+  	<param-name>jdbcDriver</param-name>
+  	<param-value>oracle.jdbc.OracleDriver</param-value>
+  </context-param>
+  
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/WEB-INF/jsp/error/err404.jsp</location>
+  	<!-- err404.jsp의 경로 복사 후 붙여넣기-> /exweb/src/main/webapp는 최상위 폴더라서 삭제 -->
+  </error-page>
+  
+  <error-page>
+  	<error-code>500</error-code>
+  	<location>/WEB-INF/jsp/error/err500.jsp</location>
+  </error-page>
+  
+  <error-page>
+  	<exception-type>java.lang.NullPointerException</exception-type>
+  	<location>/WEB-INF/jsp/error/errNull.jsp</location>
+  </error-page>
   
   
 </web-app>

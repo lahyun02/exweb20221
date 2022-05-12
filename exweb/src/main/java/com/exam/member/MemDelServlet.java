@@ -15,12 +15,16 @@ import javax.servlet.http.HttpServletResponse;
 //폼 작성으로 회원추가를 할 수 있는 서블릿
 @WebServlet("/member/del.do")
 public class MemDelServlet extends HttpServlet {
-	MemberDao memberDao = new MemberDao();	//한번만 실행해도 됨.
+	MemberDao memberDao = new MemberDaoJdbc();	//한번만 실행해도 됨.
+	
+	// 링크눌렀을 때 실행. 링크 누르면 get방식. 
 	@Override
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//		req.getParameter("abc").equals("def"); // nullpointexception 테스트하기 위해 일부로 오류내기.		
+		
 		req.setCharacterEncoding("UTF-8");
 		String memId = req.getParameter("memId"); 
-		int num = memberDao.delete( memId );
+		int num = memberDao.delMember( memId );
 		
 		resp.sendRedirect( req.getContextPath() + "/member/list.do");
 		

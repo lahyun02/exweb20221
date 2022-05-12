@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace는 현재 파일에 정의된 SQL문 집합의 고유한 이름 -->
+<!-- 보통은 SQL문을 실행할 Dao 인터페이스 이름으로 설정 -->
+<mapper namespace="com.exam.member.MemberDao">
+<!-- SQL문의 종류와 동일한 이름의 태그를 사용하여 SQL문을 등록 -->
+<!-- id는 파일 내에서 현재 SQL문의 고유한 이름  -->
+<!-- 보통은 SQL문을 실행할 Dao 인터페이스의 메서드 이름으로 설정(스프링에서 사용하면 자동완성의 편리함이 있기때문) -->
+  <select id="selectMemberList" resultType="Blog">
+    SELECT mem_id, mem_pass, mem_name, mem_point FROM member
+  </select>
+</mapper>
+

@@ -13,14 +13,19 @@
 		</head>
 		<body>
 		<h1>회원목록</h1>
-		<button><a href='${pageContext.request.contextPath}/member/addform.do'>회원추가</a></button><br>
-		<button><a href='<c:url value="/member/addform.do" />'>회원추가</a></button><br>
+		<a href='${pageContext.request.contextPath}/member/add.do'>회원추가</a><br>
+		<a href='<c:url value="/member/add.do" />'>회원추가</a><br>
 		회원아이디 : 회원비밀번호 : 회원이름 : 회원포인트<br>
-	
+<%-- 문자열을 출력하는 경우 보안 때문에 c:out(<를 html entity- &lt; 등으로 변환)의 value에 el값을 넣어주는 게 좋다. 
+입력창에 자바스크립트 코드를 작성하면 그대로 실행되어 보안 등에 위협적(악성 스크립트 위험 등) 
+int타입 memPoint는 int타입에 문자열인 스크립트소스를 넣을 수 없으니 굳이 c:out에 안넣어도 됨. 
+실무에선 뭐가 String, int타입인지 헷갈리기 때문에 c:out에 넣으라고 하는 경우 있음.
+c:out은 excapeXml 속성이 디폴트로 설정되어서 <(꺽쇠)를 html entity(&lt;)로 자동 변환해줌. --%>
 <c:forEach var="vo" items="${memList}">
- 		${vo.memId} : ${vo.memPass} : ${vo.memName} : ${vo.memPoint}  
-		<button><a href='${pageContext.request.contextPath}/member/del.do?memId=${vo.memId}'>삭제</a></button><br>
+ 		<c:out value=" ${vo.memId}" /> :<c:out value="${vo.memPass}" />  : <c:out value="${vo.memName}"  /> : ${vo.memPoint}  
+		<a href='${pageContext.request.contextPath}/member/del.do?memId=${vo.memId}'>삭제</a><br>
 </c:forEach>
+<%-- a태그의 href='' 속성에 들어가는 경우, script태그가 해석되지 않아서 c:out에 el을 넣어서 값을 넣어주지 않아도 됨. --%>
 
 		</body>
 		</html>

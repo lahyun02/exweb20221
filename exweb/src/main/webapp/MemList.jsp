@@ -1,14 +1,12 @@
 <%@page import="com.exam.member.MemberVo"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.exam.member.MemberDao"%>
+<%@page import="com.exam.member.MemberDaoJdbc"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%!
-	MemberDao memberDao = new MemberDao();
-%>
+<%!MemberDaoJdbc memberDao = new MemberDaoJdbc();%>
 <%
-		ArrayList<MemberVo> list = memberDao.selectList(); //요청이 올때마다 실행해야 함. 테이블의 내용이 변경될 수 있기 때문.
+ArrayList<MemberVo> list = memberDao.selectMemberList(); //요청이 올때마다 실행해야 함. 테이블의 내용이 변경될 수 있기 때문.
 %>		
 		<!DOCTYPE html>
 		<html>

@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 //폼 작성으로 회원추가를 할 수 있는 서블릿
-@WebServlet("/member/addform.do")
+//@WebServlet("/member/addform.do")
 public class MemAddFormServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

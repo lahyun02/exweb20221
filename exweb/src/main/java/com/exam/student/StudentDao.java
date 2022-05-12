@@ -17,13 +17,13 @@ public class StudentDao {
 	String password = "web01";
 	
 	//한번만 실행. 생성자를 만들거나 블록 안에 넣거나.
-	{
-		try {
-			Class.forName("oracle.jdbc.OracleDriver");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
+//	{
+//		try {
+//			Class.forName("oracle.jdbc.OracleDriver");
+//		} catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+//		}
+//	}
 	
 	//db관련 코드와 ui관련 코드 분리
 	public ArrayList<StudentVo> selectList() {
@@ -84,19 +84,19 @@ public class StudentDao {
 		return num;
 	}
 	
-	
-	public int modifyNo(String stu_no, String stu_name, String stu_score, String up_stu_no) {
+		
+	public int modifyNo(StudentVo vo) {
 		// 입력한 아이디의 회원의 이름을 student 테이블에서 수정
 		int num = 0;
-		String modSql = "UPDATE student SET stu_no = ?, stu_name = ?, stu_score= ? WHERE stu_no = ?"; 
+		String modSql = "UPDATE student SET stu_name = ?, stu_score= ? WHERE stu_no = ?"; 
 		try (	
 				Connection conn = DriverManager.getConnection(url, user, password);
 				PreparedStatement pstmt = conn.prepareStatement(modSql);				
 		) {
-			pstmt.setString(1, stu_no);  
-			pstmt.setString(2, stu_name);  
-			pstmt.setString(3, stu_score);  
-			pstmt.setString(4, up_stu_no);  
+			
+			pstmt.setString(1, vo.getStu_name());  
+			pstmt.setInt(2, vo.getStu_score());  
+			pstmt.setInt(3, vo.getStu_no());    
 			num = pstmt.executeUpdate(); 
 		} catch (SQLException e) {
 			e.printStackTrace();

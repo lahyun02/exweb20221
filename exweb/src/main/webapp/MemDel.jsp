@@ -1,15 +1,13 @@
-<%@page import="com.exam.member.MemberDao"%>
+<%@page import="com.exam.member.MemberDaoJdbc"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%! 
-	MemberDao memberDao = new MemberDao();
-%>
+<%!MemberDaoJdbc memberDao = new MemberDaoJdbc();%>
 
 <%
-	request.setCharacterEncoding("UTF-8");
+request.setCharacterEncoding("UTF-8");
 	String memId = request.getParameter("memId"); 
-	int num = memberDao.delete( memId );
+	int num = memberDao.delMember( memId );
 	
 	response.sendRedirect( request.getContextPath() + "/MemList.jsp");
 %>

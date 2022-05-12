@@ -19,15 +19,19 @@ public class StuModServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
-		String stu_no = req.getParameter("stu_no"); 
 		String stu_name = req.getParameter("stu_name"); 
-		String stu_score = req.getParameter("stu_score"); 
-		String up_stu_no = req.getParameter("up_stu_no"); 
+		int stu_no = Integer.parseInt(req.getParameter("stu_no")); 
+		int stu_score = Integer.parseInt(req.getParameter("stu_score")); 
+		
+		StudentVo vo = new StudentVo(stu_no, stu_name, stu_score);
+		int num = studentDao.modifyNo( vo );
+		
+//		String stu_name = req.getParameter("stu_name"); 
+//		String stu_score = req.getParameter("stu_score"); 
+//		String up_stu_no = req.getParameter("up_stu_no"); 
 		System.out.println(stu_no);
 		System.out.println(stu_name);
 		System.out.println(stu_score);
-		System.out.println(up_stu_no);
-		int num = studentDao.modifyNo( stu_no, stu_name, stu_score, up_stu_no );
 		System.out.println(num);
 		resp.sendRedirect( req.getContextPath() + "/student/list.do");
 		

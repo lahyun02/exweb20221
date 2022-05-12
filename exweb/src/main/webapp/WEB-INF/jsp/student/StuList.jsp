@@ -10,7 +10,7 @@
 <style>
 a {text-decoration : none}
 table {
-	width: 70%;
+	width: 800px;
 	border: 1px solid #333;
 	border-collapse: collapse;
 	text-align: center;
@@ -18,7 +18,6 @@ table {
 th, tr, td {
 	border: 1px solid #333;
 	padding: 10px;
-	
 }
 </style>
 </head>

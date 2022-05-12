@@ -3,6 +3,7 @@ package com.exam.member;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import javax.servlet.RequestDispatcher;
@@ -19,12 +20,12 @@ import javax.servlet.http.HttpServletResponse;
 //회원목록을 출력해주는 서블릿
 @WebServlet("/member/list.do")
 public class MemListServlet extends HttpServlet {
-	MemberDao memberDao = new MemberDao();	//한번만 실행해도 됨.
+	MemberDao memberDao = new MemberDaoJdbc();	//한번만 실행해도 됨.
 	@Override
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// "http://localhost:8000/exweb/member/list.do"로 요청을 보내면,
 		// 웹브라우저에 회원목록이 출력되도록 구현 
-		ArrayList<MemberVo> list = memberDao.selectList(); //요청이 올때마다 실행해야 함. 테이블의 내용이 변경될 수 있기 때문.
+		List<MemberVo> list = memberDao.selectMemberList(); //요청이 올때마다 실행해야 함. 테이블의 내용이 변경될 수 있기 때문.
 		
 		req.setAttribute("memList", list);
 		

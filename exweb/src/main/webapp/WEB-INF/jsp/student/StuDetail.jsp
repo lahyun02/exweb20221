@@ -12,15 +12,14 @@ a {text-decoration : none}
 #wrap { display: flex; }
 form { margin-right: 10px; }
 table {
-	width: 70%;
+	width: 800px;
 	border: 1px solid #333;
 	border-collapse: collapse;
 	text-align: center;
 }
-tr, th, td {
+th, tr, td {
 	border: 1px solid #333;
 	padding: 10px;
-	
 }
 </style>
 </head>
