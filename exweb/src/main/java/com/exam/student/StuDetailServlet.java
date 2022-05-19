@@ -19,12 +19,13 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/student/detail.do")
 public class StuDetailServlet extends HttpServlet {
-	StudentDao studentDao = new StudentDao();	//한번만 실행해도 됨.
+	StudentDao studentDao = new StudentDaoBatis();	//한번만 실행해도 됨.
+	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//		StudentDao studentDao = new StudentDao();
 		String stu_no = req.getParameter("stu_no"); 
-		StudentVo vo = studentDao.detail( stu_no );
+		
+		StudentVo vo = studentDao.detailStudent( stu_no );
 		
 		req.setAttribute("vo", vo);
 		

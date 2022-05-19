@@ -13,17 +13,23 @@ import javax.servlet.http.HttpServletResponse;
 
 
 //폼 작성으로 회원추가를 할 수 있는 서블릿
-@WebServlet("/member/add.do")
-public class MemAddServlet extends HttpServlet {
+@WebServlet("/member/edit.do")
+public class MemEditServlet extends HttpServlet {
 	MemberDao memberDao = new MemberDaoBatis();	//한번만 실행해도 됨.
-	
-	//서블릿의 service() 메서드 : 요청방식에 상관없이 실행되는 메서드
-	//서블릿의 doXxx() 메서드 : 요청방식이 XXX인 경우에 실행되는 메서드
-	// 상속받은 HttpServlet 클래스의 메소드에 이미 다 구현되어 있어서 이런 방식이 가능함. 
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/jsp/member/MemAddForm.jsp").forward(req, resp);	
+		//화면에 출력하기 전에 데이터베이스에서 해당회원의 정보를 꺼내와야함.
+		String memId = req.getParameter("memId");
+		
+		// 회원정보를 꺼내올 메소드 (MemberDao에서)
+		MemberVo vo = memberDao.selectMember(memId);
+		
+		req.setAttribute("memVo", vo);
+		
+		req.getRequestDispatcher("/WEB-INF/jsp/member/MemEdit.jsp").forward(req, resp);	
+		//jsp에 출력할 정보가 없기 때문에 add에선 이것만 했었음.
+		// 여기에선 db에서 꺼내온 정보-vo-를 출력해야함. -> 요청객체에 속성으로 적당에서 jsp에서 요청객체에 저장된 걸 꺼내씀.
 	}
 	
 	@Override
@@ -35,7 +41,7 @@ public class MemAddServlet extends HttpServlet {
 		vo.setMemPass( req.getParameter("memPass") ); 
 		vo.setMemName( req.getParameter("memName") ); 
 		vo.setMemPoint( Integer.parseInt( req.getParameter("memPoint") ) ); 
-		int num = memberDao.insertMember(vo);
+		int num = memberDao.updateMember(vo);
 		
 		//resp.sendRedirect("이동할사이트주소"); 명령을 사용하여, 웹브라우저에게 특정 사이트로 이동하라는 명령을 담은 응답을 전송.
 		// 서버 주소가 다를 수 있으니까 주소 앞에 http://localhost:8000는 생략 

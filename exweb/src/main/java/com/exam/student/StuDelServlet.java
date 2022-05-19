@@ -15,13 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 //폼 작성으로 회원추가를 할 수 있는 서블릿
 @WebServlet("/student/del.do")
 public class StuDelServlet extends HttpServlet {
-	StudentDao studentDao = new StudentDao();	//한번만 실행해도 됨.
+	StudentDao studentDao = new StudentDaoBatis();	//한번만 실행해도 됨.
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		String stu_no = req.getParameter("stu_no"); 
-		int num = studentDao.delete( stu_no );
-		System.out.println(num);
+		int num = studentDao.deleteStudent( stu_no );
 		resp.sendRedirect( req.getContextPath() + "/student/list.do");
 		
 		//출력

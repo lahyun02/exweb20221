@@ -15,23 +15,27 @@ import javax.servlet.http.HttpServletResponse;
 //폼 작성으로 회원추가를 할 수 있는 서블릿
 @WebServlet("/student/add.do")
 public class StuAddServlet extends HttpServlet {
-	StudentDao studentDao = new StudentDao();	//한번만 실행해도 됨.
+	StudentDao studentDao = new StudentDaoBatis();	//한번만 실행해도 됨.
+	
 	@Override
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//db에 추가 
-		req.setCharacterEncoding("UTF-8");
-		StudentVo vo = new StudentVo();
-		vo.setStu_no( Integer.parseInt ( req.getParameter("stu_no") ) ); 
-		vo.setStu_name( req.getParameter("stu_name") ); 
-		vo.setStu_score( Integer.parseInt( req.getParameter("stu_score") ) ); 
-		int num = studentDao.insert(vo);
-		
-		//resp.sendRedirect("이동할사이트주소"); 명령을 사용하여, 웹브라우저에게 특정 사이트로 이동하라는 명령을 담은 응답을 전송.
-		// 서버 주소가 다를 수 있으니까 주소 앞에 http://localhost:8000는 생략 
-		resp.sendRedirect( req.getContextPath() + "/student/list.do");
-		
-
-		
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.getRequestDispatcher("/WEB-INF/jsp/student/StuAddForm.jsp").forward(req, resp);
 	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		//db에 추가 
+				req.setCharacterEncoding("UTF-8");
+				StudentVo vo = new StudentVo();
+				vo.setStu_no( Integer.parseInt ( req.getParameter("stu_no") ) ); 
+				vo.setStu_name( req.getParameter("stu_name") ); 
+				vo.setStu_score( Integer.parseInt( req.getParameter("stu_score") ) ); 
+				int num = studentDao.insertStudent(vo);
+				
+				//resp.sendRedirect("이동할사이트주소"); 명령을 사용하여, 웹브라우저에게 특정 사이트로 이동하라는 명령을 담은 응답을 전송.
+				// 서버 주소가 다를 수 있으니까 주소 앞에 http://localhost:8000는 생략 
+				resp.sendRedirect( req.getContextPath() + "/student/list.do");
+	}
+	
 }
 

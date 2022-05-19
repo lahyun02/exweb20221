@@ -23,9 +23,7 @@ th, tr, td {
 	height: 100%;
 	border: 0;
 }
-.ipbox:focus {
-	outline: none;
-}
+
 </style>
 </head>
 <body>
@@ -34,13 +32,16 @@ th, tr, td {
 <form action='${pageContext.request.contextPath}/student/mod.do' method='post'>
 <table>
 		<tr>
-			<td>학번 </td> <td><input class='ipbox' type='text' name='stu_no' value="${vo.stu_no}" readonly /></td>
+			<td>학번 </td> 
+			<td><input class='ipbox' type='text' name='stu_no' value="${vo.stu_no}" readonly /></td>
 		</tr>
 		<tr>
-			<td>이름 </td> <td><input class='ipbox' type='text' name='stu_name' value="${vo.stu_name}" /></td>
+			<td>이름 </td> 
+			<td><input class='ipbox' type='text' name='stu_name' value="${vo.stu_name}" /></td>
 		</tr>
 		<tr>
-			<td>점수 </td> <td><input class='ipbox' type='text' name='stu_score' value="${vo.stu_score}" /></td>
+			<td>점수 </td> 
+			<td><input class='ipbox' type='text' name='stu_score' value="${vo.stu_score}" /></td>
 		</tr>
 </table>
 

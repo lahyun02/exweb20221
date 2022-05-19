@@ -12,4 +12,8 @@ public interface MemberDao {
 
 	int delMember(String memId);
 
+	MemberVo selectMember(String memId);
+
+	int updateMember(MemberVo vo); 
+
 }

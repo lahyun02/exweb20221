@@ -13,9 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 
 
 //폼 작성으로 회원추가를 할 수 있는 서블릿
-@WebServlet("/student/modform.do")
+//@WebServlet("/student/modform.do")
 public class StuModFormServlet extends HttpServlet {
-	StudentDao studentDao = new StudentDao();
+	StudentDaoJdbc studentDao = new StudentDaoJdbc();
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String stu_no = req.getParameter("stu_no"); 

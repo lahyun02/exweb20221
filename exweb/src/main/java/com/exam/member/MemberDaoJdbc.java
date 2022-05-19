@@ -88,4 +88,16 @@ public class MemberDaoJdbc implements MemberDao {
 		}
 		return num;
 	}
+
+	@Override
+	public MemberVo selectMember(String memId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int updateMember(MemberVo vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

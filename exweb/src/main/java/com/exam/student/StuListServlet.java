@@ -3,6 +3,7 @@ package com.exam.student;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import javax.servlet.RequestDispatcher;
@@ -20,10 +21,10 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/student/list.do")
 public class StuListServlet extends HttpServlet {
-	StudentDao StudentDao = new StudentDao();	//한번만 실행해도 됨.
+	StudentDao studentDao = new StudentDaoBatis();	//한번만 실행해도 됨.
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		ArrayList<StudentVo> list = StudentDao.selectList(); //요청이 올때마다 실행해야 함. 테이블의 내용이 변경될 수 있기 때문.
+		List<StudentVo> list = studentDao.selectStudentList(); //요청이 올때마다 실행해야 함. 테이블의 내용이 변경될 수 있기 때문.
 		req.setAttribute("stuList", list);
 		req.getRequestDispatcher("/WEB-INF/jsp/student/StuList.jsp").forward(req, resp);
 		

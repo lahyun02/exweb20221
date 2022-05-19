@@ -23,7 +23,7 @@ th, tr, td {
 </head>
 <body>
 <h1>학생목록</h1>
-<button><a href='<c:url value="/student/addform.do" />'>학생추가</a></button><br>
+<button><a href='<c:url value="/student/add.do" />'>학생추가</a></button><br>
 
 <table>
 	<thead>
@@ -36,9 +36,15 @@ th, tr, td {
 	<tbody>
 		<c:forEach var="vo" items="${stuList}">
 			<tr>
-				<td><a href="<c:url value='/student/detail.do'/>?stu_no=${vo.stu_no}"> ${vo.stu_no}</a></td>
-				<td><a href="<c:url value='/student/detail.do'/>?stu_no=${vo.stu_no}">${vo.stu_name}</a></td>
-				<td><a href="<c:url value='/student/detail.do'/>?stu_no=${vo.stu_no}">${vo.stu_score}</a></td>
+				<td><a href="${pageContext.request.contextPath}/student/detail.do?stu_no=${vo.stu_no}"><c:out value="${vo.stu_no}" /></a></td>
+				<%-- <td>
+					<form action="${pageContext.request.contextPath}/student/detail.do?stu_no=${vo.stu_no}" method="get">
+						<c:out value="${vo.stu_no}" />
+						<input type="hidden" name="stu_no" value="${vo.stu_no}" />
+					</form>
+				</td> --%>
+				<td><c:out value="${vo.stu_name}" /></td>
+				<td><c:out value="${vo.stu_score}" /></td>
 			</tr>
 		</c:forEach>
 	</tbody>

@@ -46,7 +46,7 @@ th, tr, td {
 
 
 <div id="wrap">
-<form action='<c:url value="/student/modform.do"/>?stu_no=${vo.stu_no}' method='post'>
+<form action='<c:url value="/student/mod.do"/>?stu_no=${vo.stu_no}' method='get'>
 <input type='hidden' name='stu_no' value='${vo.stu_no}' />
 <input type='submit' value='수정' />
 </form>

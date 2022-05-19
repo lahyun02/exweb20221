@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 //폼 작성으로 회원추가를 할 수 있는 서블릿
-@WebServlet("/student/addform.do")
+//@WebServlet("/student/addform.do")
 public class StuAddFormServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

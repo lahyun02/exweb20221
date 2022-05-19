@@ -22,7 +22,9 @@ int타입 memPoint는 int타입에 문자열인 스크립트소스를 넣을 수
 실무에선 뭐가 String, int타입인지 헷갈리기 때문에 c:out에 넣으라고 하는 경우 있음.
 c:out은 excapeXml 속성이 디폴트로 설정되어서 <(꺽쇠)를 html entity(&lt;)로 자동 변환해줌. --%>
 <c:forEach var="vo" items="${memList}">
- 		<c:out value=" ${vo.memId}" /> :<c:out value="${vo.memPass}" />  : <c:out value="${vo.memName}"  /> : ${vo.memPoint}  
+		<%-- 내가 상세조회하고 싶은 회원의 id를 파라미터를 붙여서 전송해야 해당 회원의 정보가 나온다. --%>
+ 		<a href="${pageContext.request.contextPath}/member/edit.do?memId=${vo.memId}"><c:out value=" ${vo.memId}" /></a> 
+ 		:<c:out value="${vo.memPass}" />  : <c:out value="${vo.memName}"  /> : <c:out value="${vo.memPoint}" />
 		<a href='${pageContext.request.contextPath}/member/del.do?memId=${vo.memId}'>삭제</a><br>
 </c:forEach>
 <%-- a태그의 href='' 속성에 들어가는 경우, script태그가 해석되지 않아서 c:out에 el을 넣어서 값을 넣어주지 않아도 됨. --%>

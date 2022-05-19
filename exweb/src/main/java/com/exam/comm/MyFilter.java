@@ -34,7 +34,7 @@ public class MyFilter implements Filter {
 //		인코딩1. request.setCharacterEncoding("UTF-8"); // 여기에 이 한줄을 넣으면 다른 서블릿에서 이 코드는 없어도 됨.
 		// 인코딩2. web.xml에서 init-param 태그 안에 넣어줌.
 		request.setCharacterEncoding(cs); // 인코딩4
-		
+		//누구게! 저 왔다가용!!!!!!!!!!!!!!!!!!!!ㅎ.ㅎ
 		
 		chain.doFilter(request, response); // 이후 실행될 다른 필터 또는 서블릿을 실행. 보안상 어떨 경우에 실행되도록 해라 하는 로직 추가 가능.
 		

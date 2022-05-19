@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 //회원목록을 출력해주는 서블릿
 @WebServlet("/member/list.do")
 public class MemListServlet extends HttpServlet {
-	MemberDao memberDao = new MemberDaoJdbc();	//한번만 실행해도 됨.
+	MemberDao memberDao = new MemberDaoBatis();	//한번만 실행해도 됨.
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// "http://localhost:8000/exweb/member/list.do"로 요청을 보내면,
