@@ -6,11 +6,11 @@ public interface StudentDao {
 	
 	List<StudentVo> selectStudentList();
 
-	StudentVo detailStudent(String stu_no);
+	StudentVo detailStudent(String stuNo);
 	
 	int insertStudent(StudentVo vo);
 	
-	int deleteStudent(String stu_no);
+	int deleteStudent(String stuNo);
 	
 	int modifyStudent(StudentVo vo);
 	

@@ -18,8 +18,8 @@ public class StuModFormServlet extends HttpServlet {
 	StudentDaoJdbc studentDao = new StudentDaoJdbc();
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String stu_no = req.getParameter("stu_no"); 
-		StudentVo vo = studentDao.detail(stu_no);
+		String stuNo = req.getParameter("stuNo"); 
+		StudentVo vo = studentDao.detail(stuNo);
 		
 		req.setAttribute("vo", vo);
 		

@@ -23,9 +23,9 @@ public class StuDetailServlet extends HttpServlet {
 	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String stu_no = req.getParameter("stu_no"); 
+		String stuNo = req.getParameter("stuNo"); 
 		
-		StudentVo vo = studentDao.detailStudent( stu_no );
+		StudentVo vo = studentDao.detailStudent( stuNo );
 		
 		req.setAttribute("vo", vo);
 		

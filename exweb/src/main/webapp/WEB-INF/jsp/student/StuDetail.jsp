@@ -35,9 +35,9 @@ th, tr, td {
 	</thead>
 	<tbody>
 		<tr>
-			<td>${vo.stu_no}</td>
-			<td>${vo.stu_name}</td>
-			<td>${vo.stu_score}</td>
+			<td>${vo.stuNo}</td>
+			<td>${vo.stuName}</td>
+			<td>${vo.stuScore}</td>
 		</tr>
 	
 	</tbody>
@@ -46,13 +46,13 @@ th, tr, td {
 
 
 <div id="wrap">
-<form action='<c:url value="/student/mod.do"/>?stu_no=${vo.stu_no}' method='get'>
-<input type='hidden' name='stu_no' value='${vo.stu_no}' />
+<form action='<c:url value="/student/mod.do"/>?stuNo=${vo.stuNo}' method='get'>
+<input type='hidden' name='stuNo' value='${vo.stuNo}' />
 <input type='submit' value='수정' />
 </form>
 
 <form action='<c:url value="/student/del.do"/>' method='post'>
-<input type='hidden' name='stu_no' value='${vo.stu_no}' />
+<input type='hidden' name='stuNo' value='${vo.stuNo}' />
 <input type='submit' value='삭제' />
 </form>
 

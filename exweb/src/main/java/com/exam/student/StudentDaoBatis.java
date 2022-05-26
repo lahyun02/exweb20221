@@ -43,10 +43,10 @@ public class StudentDaoBatis implements StudentDao {
 
 
 	@Override
-	public StudentVo detailStudent(String stu_no) {
+	public StudentVo detailStudent(String stuNo) {
 		StudentVo vo = null;
 		try (SqlSession session = sqlSessionFactory.openSession()) {
-			vo = session.selectOne("com.exam.student.StudentDao.detailStudent", stu_no);
+			vo = session.selectOne("com.exam.student.StudentDao.detailStudent", stuNo);
 			}
 		return vo;
 	}
@@ -64,10 +64,10 @@ public class StudentDaoBatis implements StudentDao {
 
 
 	@Override
-	public int deleteStudent(String stu_no) {
+	public int deleteStudent(String stuNo) {
 		int num = 0;
 		try (SqlSession session = sqlSessionFactory.openSession()) {
-			num = session.insert("com.exam.student.StudentDao.deleteStudent", stu_no);
+			num = session.insert("com.exam.student.StudentDao.deleteStudent", stuNo);
 			session.commit();
 			}
 		return num;

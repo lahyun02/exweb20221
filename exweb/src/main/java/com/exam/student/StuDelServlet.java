@@ -19,8 +19,8 @@ public class StuDelServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
-		String stu_no = req.getParameter("stu_no"); 
-		int num = studentDao.deleteStudent( stu_no );
+		String stuNo = req.getParameter("stuNo"); 
+		int num = studentDao.deleteStudent( stuNo );
 		resp.sendRedirect( req.getContextPath() + "/student/list.do");
 		
 		//출력

@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 //과제
 //1. 학생목록, 추가, 삭제 서블릿과 JSP 파일을 구현(MVC패턴)
@@ -20,15 +21,13 @@ import javax.servlet.http.HttpServletResponse;
 //회원목록을 출력해주는 서블릿
 @WebServlet("/member/list.do")
 public class MemListServlet extends HttpServlet {
-	MemberDao memberDao = new MemberDaoBatis();	//한번만 실행해도 됨.
+	MemberDao memberDao = MemberDaoBatis.getInstance();	//한번만 실행해도 됨.
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// "http://localhost:8000/exweb/member/list.do"로 요청을 보내면,
-		// 웹브라우저에 회원목록이 출력되도록 구현 
+		
+		//if문 실행후 밑에가 실행이 안되도록 하려면- if문 안에 return을 넣거나 else안에 밑의 실행문을 넣거나.
 		List<MemberVo> list = memberDao.selectMemberList(); //요청이 올때마다 실행해야 함. 테이블의 내용이 변경될 수 있기 때문.
-		
 		req.setAttribute("memList", list);
-		
 		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/jsp/member/MemList.jsp");
 		rd.forward(req, resp);
 		

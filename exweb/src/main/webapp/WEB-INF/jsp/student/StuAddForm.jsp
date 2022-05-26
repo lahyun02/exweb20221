@@ -11,9 +11,9 @@
 <h1>학생추가</h1>
 
 <form action='${pageContext.request.contextPath}/student/add.do' method='post'>
-학번 : <input type='text' name='stu_no'/><br>
-이름 : <input type='text' name='stu_name'/><br>
-점수 : <input type='text' name='stu_score'/><br>
+학번 : <input type='text' name='stuNo'/><br>
+이름 : <input type='text' name='stuName'/><br>
+점수 : <input type='text' name='stuScore'/><br>
 <input type='submit' />
 </form>
 

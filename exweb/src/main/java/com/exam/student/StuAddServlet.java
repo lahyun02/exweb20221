@@ -27,9 +27,9 @@ public class StuAddServlet extends HttpServlet {
 		//db에 추가 
 				req.setCharacterEncoding("UTF-8");
 				StudentVo vo = new StudentVo();
-				vo.setStu_no( Integer.parseInt ( req.getParameter("stu_no") ) ); 
-				vo.setStu_name( req.getParameter("stu_name") ); 
-				vo.setStu_score( Integer.parseInt( req.getParameter("stu_score") ) ); 
+				vo.setStuNo( Integer.parseInt ( req.getParameter("stuNo") ) ); 
+				vo.setStuName( req.getParameter("stuName") ); 
+				vo.setStuScore( Integer.parseInt( req.getParameter("stuScore") ) ); 
 				int num = studentDao.insertStudent(vo);
 				
 				//resp.sendRedirect("이동할사이트주소"); 명령을 사용하여, 웹브라우저에게 특정 사이트로 이동하라는 명령을 담은 응답을 전송.

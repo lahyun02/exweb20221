@@ -100,4 +100,10 @@ public class MemberDaoJdbc implements MemberDao {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public MemberVo selectLoginMember(MemberVo vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

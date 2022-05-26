@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 //폼 작성으로 회원추가를 할 수 있는 서블릿
 @WebServlet("/member/del.do")
 public class MemDelServlet extends HttpServlet {
-	MemberDao memberDao = new MemberDaoBatis();	//한번만 실행해도 됨.
+	MemberDao memberDao = MemberDaoBatis.getInstance();	
 	
 	// 링크눌렀을 때 실행. 링크 누르면 get방식. 
 	@Override

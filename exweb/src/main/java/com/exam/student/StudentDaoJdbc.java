@@ -37,9 +37,9 @@ public class StudentDaoJdbc {
 		) {
 			while (rs.next()) {	//다음 레코드가 있는 동안 반복 
 				StudentVo vo = new StudentVo();
-				vo.setStu_no( rs.getInt("stu_no") );
-				vo.setStu_name( rs.getString("stu_name") );
-				vo.setStu_score( rs.getInt("stu_score") );
+				vo.setStuNo( rs.getInt("stuNo") );
+				vo.setStuName( rs.getString("stuName") );
+				vo.setStuScore( rs.getInt("stuScore") );
 				list.add(vo);
 			}
 		} catch (SQLException e) {
@@ -57,9 +57,9 @@ public class StudentDaoJdbc {
 				Connection conn = DriverManager.getConnection(url, user, password);
 				PreparedStatement pstmt = conn.prepareStatement(insertSql);				
 		) {
-			pstmt.setInt(1, vo.getStu_no());  
-			pstmt.setString(2, vo.getStu_name());  
-			pstmt.setInt(3, vo.getStu_score());  
+			pstmt.setInt(1, vo.getStuNo());  
+			pstmt.setString(2, vo.getStuName());  
+			pstmt.setInt(3, vo.getStuScore());  
 			num = pstmt.executeUpdate();	//SQL문 실행결과 변경된 레코드 수를 반환 
 			
 		} catch (SQLException e) {
@@ -68,7 +68,7 @@ public class StudentDaoJdbc {
 		return num;
 	}
 	
-	public int delete(String stu_no) {
+	public int delete(String stuNo) {
 		// 입력한 아이디의 회원을 student 테이블에서 삭제
 		int num = 0;
 		String delSql = "DELETE FROM student WHERE stu_no = ?"; 
@@ -76,7 +76,7 @@ public class StudentDaoJdbc {
 				Connection conn = DriverManager.getConnection(url, user, password);
 				PreparedStatement pstmt = conn.prepareStatement(delSql);				
 		) {
-			pstmt.setString(1, stu_no);  
+			pstmt.setString(1, stuNo);  
 			num = pstmt.executeUpdate(); 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -94,9 +94,9 @@ public class StudentDaoJdbc {
 				PreparedStatement pstmt = conn.prepareStatement(modSql);				
 		) {
 			
-			pstmt.setString(1, vo.getStu_name());  
-			pstmt.setInt(2, vo.getStu_score());  
-			pstmt.setInt(3, vo.getStu_no());    
+			pstmt.setString(1, vo.getStuName());  
+			pstmt.setInt(2, vo.getStuScore());  
+			pstmt.setInt(3, vo.getStuNo());    
 			num = pstmt.executeUpdate(); 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -116,9 +116,9 @@ public class StudentDaoJdbc {
 			pstmt.setString(1, stu_no); 
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {	//다음 레코드가 있는 동안 반복 
-				vo.setStu_no( rs.getInt("stu_no") );
-				vo.setStu_name( rs.getString("stu_name") );
-				vo.setStu_score( rs.getInt("stu_score") );
+				vo.setStuNo( rs.getInt("stu_no") );
+				vo.setStuName( rs.getString("stu_name") );
+				vo.setStuScore( rs.getInt("stu_score") );
 				System.out.println(vo.toString() );
 			}
 		} catch (SQLException e) {

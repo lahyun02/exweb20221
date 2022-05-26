@@ -20,8 +20,8 @@ public class StuModServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		String stu_no = req.getParameter("stu_no"); 
-		StudentVo vo = studentDao.detailStudent(stu_no);
+		String stuNo = req.getParameter("stuNo"); 
+		StudentVo vo = studentDao.detailStudent(stuNo);
 		
 		req.setAttribute("vo", vo);
 		
@@ -32,11 +32,11 @@ public class StuModServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
-		String stu_name = req.getParameter("stu_name"); 
-		int stu_no = Integer.parseInt(req.getParameter("stu_no")); 
-		int stu_score = Integer.parseInt(req.getParameter("stu_score")); 
+		String stuName = req.getParameter("stuName"); 
+		int stuNo = Integer.parseInt(req.getParameter("stuNo")); 
+		int stuScore = Integer.parseInt(req.getParameter("stuScore")); 
 		
-		StudentVo vo = new StudentVo(stu_no, stu_name, stu_score);
+		StudentVo vo = new StudentVo(stuNo, stuName, stuScore);
 		int num = studentDao.modifyStudent( vo );
 		
 		resp.sendRedirect( req.getContextPath() + "/student/list.do");

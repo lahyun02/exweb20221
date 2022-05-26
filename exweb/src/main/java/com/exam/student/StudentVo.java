@@ -4,41 +4,88 @@ public class StudentVo {
 	//Value Object. 
 	//테이블에 레코드 하나(한 행)을 담을 수 있는 객체.
 	
-	private int stu_no;
-	private String stu_name;
-	private int stu_score;
+	private int stuNo;
+	private String stuName;
+	private int stuScore;
 	
 	public StudentVo() {}
 	
-	public StudentVo(int stu_no, String stu_name, int stu_score) {
-		this.stu_no = stu_no;
-		this.stu_name = stu_name;
-		this.stu_score = stu_score;
+	public StudentVo(int stuNo, String stuName, int stuScore) {
+		this.stuNo = stuNo;
+		this.stuName = stuName;
+		this.stuScore = stuScore;
 	}
+		
 	
-	public int getStu_no() {
-		return stu_no;
+	public int getStuNo() {
+		return stuNo;
 	}
-	public void setStu_no(int stu_no) {
-		this.stu_no = stu_no;
+
+	public void setStuNo(int stuNo) {
+		this.stuNo = stuNo;
 	}
-	public String getStu_name() {
-		return stu_name;
+
+	public String getStuName() {
+		return stuName;
 	}
-	public void setStu_name(String stu_name) {
-		this.stu_name = stu_name;
+
+	public void setStuName(String stuName) {
+		this.stuName = stuName;
 	}
-	public int getStu_score() {
-		return stu_score;
+
+	public int getStuScore() {
+		return stuScore;
 	}
-	public void setStu_score(int stu_score) {
-		this.stu_score = stu_score;
+
+	public void setStuScore(int stuScore) {
+		this.stuScore = stuScore;
 	}
-	
-	
+
+	@Override
 	public String toString() {
-		return stu_no + " : " + stu_name + " : " + stu_score;
+		return stuNo + " : " + stuName + " : " + stuScore;
 	}
+
+	
+
+	
+	
+	
+//	private int stu_no;
+//	private String stu_name;
+//	private int stu_score;
+//	
+//	public StudentVo() {}
+//	
+//	public StudentVo(int stu_no, String stu_name, int stu_score) {
+//		this.stu_no = stu_no;
+//		this.stu_name = stu_name;
+//		this.stu_score = stu_score;
+//	}
+//	
+//	public int getStu_no() {
+//		return stu_no;
+//	}
+//	public void setStu_no(int stu_no) {
+//		this.stu_no = stu_no;
+//	}
+//	public String getStu_name() {
+//		return stu_name;
+//	}
+//	public void setStu_name(String stu_name) {
+//		this.stu_name = stu_name;
+//	}
+//	public int getStu_score() {
+//		return stu_score;
+//	}
+//	public void setStu_score(int stu_score) {
+//		this.stu_score = stu_score;
+//	}
+//	
+//	
+//	public String toString() {
+//		return stu_no + " : " + stu_name + " : " + stu_score;
+//	}
 	
 	
 	

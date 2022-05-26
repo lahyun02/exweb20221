@@ -33,15 +33,15 @@ th, tr, td {
 <table>
 		<tr>
 			<td>학번 </td> 
-			<td><input class='ipbox' type='text' name='stu_no' value="${vo.stu_no}" readonly /></td>
+			<td><input class='ipbox' type='text' name='stuNo' value="${vo.stuNo}" readonly /></td>
 		</tr>
 		<tr>
 			<td>이름 </td> 
-			<td><input class='ipbox' type='text' name='stu_name' value="${vo.stu_name}" /></td>
+			<td><input class='ipbox' type='text' name='stuName' value="${vo.stuName}" /></td>
 		</tr>
 		<tr>
 			<td>점수 </td> 
-			<td><input class='ipbox' type='text' name='stu_score' value="${vo.stu_score}" /></td>
+			<td><input class='ipbox' type='text' name='stuScore' value="${vo.stuScore}" /></td>
 		</tr>
 </table>
 

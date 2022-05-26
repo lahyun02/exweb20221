@@ -36,15 +36,10 @@ th, tr, td {
 	<tbody>
 		<c:forEach var="vo" items="${stuList}">
 			<tr>
-				<td><a href="${pageContext.request.contextPath}/student/detail.do?stu_no=${vo.stu_no}"><c:out value="${vo.stu_no}" /></a></td>
-				<%-- <td>
-					<form action="${pageContext.request.contextPath}/student/detail.do?stu_no=${vo.stu_no}" method="get">
-						<c:out value="${vo.stu_no}" />
-						<input type="hidden" name="stu_no" value="${vo.stu_no}" />
-					</form>
-				</td> --%>
-				<td><c:out value="${vo.stu_name}" /></td>
-				<td><c:out value="${vo.stu_score}" /></td>
+				<td><a href="${pageContext.request.contextPath}/student/detail.do?stuNo=${vo.stuNo}"><c:out value="${vo.stuNo}" /></a></td>
+				
+				<td><c:out value="${vo.stuName}" /></td>
+				<td><c:out value="${vo.stuScore}" /></td>
 			</tr>
 		</c:forEach>
 	</tbody>

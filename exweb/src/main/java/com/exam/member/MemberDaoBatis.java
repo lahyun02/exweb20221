@@ -9,21 +9,26 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import com.exam.comm.MyBatisUtil;
+
+//MemberDaoBatis도 하나만 만들어 생성 가능. 인스턴스 여러개 생성해도 차이점은 sqlSessionFactory인데, 
+// static으로 하나를 공유해서 사용하는 거니까 차이점이 없음.
+// 여러 인스턴스 -> 자원낭비, 트랜젝션 문제. 전체 프로젝트에서 딱 하나의 인스턴스만 만들어 사용하는 게 좋음. -> 싱글톤 패턴 
+
 public class MemberDaoBatis implements MemberDao {
-	
-	SqlSessionFactory sqlSessionFactory = null; 
-	//sqlSessionFactory가 try문 안에 있으면 
-	public MemberDaoBatis() {
-		try {
-			// 마이바티스 설정 파일 위치. 클래스패스니까 최상위패스 org/mybatis/example/ 삭제.-> mybatis폴더 만들었으니까 추가.
-			String resource = "mybatis/mybatis-config.xml"; 	
-			// 마이바티스 설정 파일의 내용대로 마이바티스 본체(sqlSessionFactory)를 생성 
-			InputStream inputStream = Resources.getResourceAsStream(resource);	// 마이바티스 설정 파일을 읽을 수 있는 스트림
-			sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	//싱글톤(Singleton)패턴 (대부분 Dao는 싱글톤패턴사용)
+	//클래스의 인스턴스를 1개만 생성하여 애플리케이션 전체에서 공유하여 사용하고 싶을 때,
+	//눈에 보이지 않는 생성자를 못만들게한다. -> 접근제한자를 private으로.
+	// 스프링-> 알아서 객체를 1를 만들어 주입해주게 됨.
+	private MemberDaoBatis() {}	//클래스외부에서 인스턴스 생성(생성자 호출)을 금지 
+	private static MemberDaoBatis memberDaoBatis = new MemberDaoBatis(); // 클래스 내부에서 인스턴스 생성 및 보관
+	public static MemberDaoBatis getInstance() {	//클래스 외부에서 필요한 경우(호출), 보관한 인스턴스를 제공하는 메서드(외부에서 호출 가능-> 메소드와 위에 생성자 static으로)
+		return memberDaoBatis; 
 	}
+	
+	// 같은 sqlSessionFactory를 공유해서 사용 
+	private SqlSessionFactory sqlSessionFactory = MyBatisUtil.getSqlSessionFactory(); 
+	
 
 	@Override
 	public List<MemberVo> selectMemberList() {
@@ -83,6 +88,17 @@ public class MemberDaoBatis implements MemberDao {
 			session.commit();
 			} 
 		return num;
+	}
+
+	@Override
+	public MemberVo selectLoginMember(MemberVo vo) {
+		MemberVo memVo = null;
+		try (SqlSession session = sqlSessionFactory.openSession()) {
+			memVo = session.selectOne("com.exam.member.MemberDao.selectLoginMember", vo);
+			// vo객체 안에 담긴 아이디와 비밀번호를 줘서 sql문 실행해서 로그인 조건에 맞는 사람 검색
+			// 여러개의 데이터를 줘야 될때 mybatis는 데이터를 하나만 보낼 수 있기 때문에 객체나 map에 담아서 인자로 줘야함.
+			}
+		return memVo;
 	}
 
 	
