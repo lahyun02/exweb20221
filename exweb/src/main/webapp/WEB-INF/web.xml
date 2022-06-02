@@ -51,7 +51,7 @@
   </filter>
   <filter-mapping>
 	  <filter-name>encFilter</filter-name>
-	  <url-pattern>/*</url-pattern>
+	  <url-pattern>/*</url-pattern>			<!-- 적용되는 경로 설정: 모든 경로에 대해 다 실행  -->
   </filter-mapping>
   
   <filter>
@@ -60,7 +60,7 @@
   </filter>
   <filter-mapping>
 	  <filter-name>loginFilter</filter-name>
-	  <url-pattern>/*</url-pattern>		<!-- 적용되는 경로 설정: 모든 경로에 대해 다 실행  -->
+	  <url-pattern>/member/*</url-pattern>		
   </filter-mapping>
   
   <listener>
